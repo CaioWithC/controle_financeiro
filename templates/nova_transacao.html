@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Nova Transação</h2>
+
+<form method="POST">
+    <label>Nome da Pessoa:</label>
+    <input type="text" name="nome_pessoa" required>
+
+    <label>Descrição:</label>
+    <input type="text" name="descricao" required>
+
+    <label>Valor:</label>
+    <input type="text" name="valor" required>
+
+    <label>Data:</label>
+    <input type="date" name="data" required>
+
+    <label>Tipo:</label>
+    <select name="tipo" required>
+        <option value="receita">Receita</option>
+        <option value="despesa">Despesa</option>
+    </select>
+
+    <label>Categoria:</label>
+    <select name="categoria_id" required>
+        {% for categoria in categorias %}
+        <option value="{{ categoria.id }}">{{ categoria.nome }} ({{ categoria.tipo }})</option>
+        {% endfor %}
+    </select>
+
+    <label>Forma de Pagamento:</label>
+    <input type="text" name="forma_pagamento">
+
+    <label>Status:</label>
+    <select name="status" required>
+        <option value="pago">Pago</option>
+        <option value="pendente">Pendente</option>
+    </select>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
